@@ -59,9 +59,8 @@ await connectDB();
 const PORT = process.env.PORT || 5000;
 
 // If Railway or local environment, start listening
-if (process.env.NODE_ENV !== "production") {
-  server.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
-}
-
+server.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 //Export server for vercel
 export default server;
