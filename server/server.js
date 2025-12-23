@@ -27,7 +27,31 @@ export const userSocketMap = {};
 
 //Middleware setup
 app.use(express.json({ limit: "4mb" }));
-app.use(cors());
+const allowedOrigins = [
+  "https://mern-chat-1-vxzp.onrender.com"
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // allow requests with no origin (like Postman)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "token"],
+  })
+);
+
+// VERY IMPORTANT (for preflight)
+app.options("*", cors());
+
 
 //Socket.io connection
 io.on("connection", (socket) => {
