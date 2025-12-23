@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import axios from 'axios';
+import axios from "axios";
 import toast from "react-hot-toast";
 import { io } from "socket.io-client";
 
@@ -90,8 +90,8 @@ export const AuthProvider = ({ children }) => {
     }
 
     const newSocket = io(backendUrl, {
-      query: {
-        userId: userData._id,
+      auth: {
+        token: localStorage.getItem("token"),
       },
     });
 

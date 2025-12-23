@@ -6,6 +6,8 @@ import { connectDB } from "./lib/db.js";
 import userRouter from "./routes/userRoutes.js";
 import messageRouter from "./routes/messageRoutes.js";
 import { Server } from "socket.io";
+import jwt from "jsonwebtoken";
+
 
 //Create Express app and HTTP server
 const app = express();
@@ -13,8 +15,12 @@ const server = http.createServer(app);
 
 //Socket.io setup
 export const io = new Server(server, {
-  cors: { origin: "*" },
+  cors: {
+    origin: "https://mern-chat-1-vxzp.onrender.com",
+    methods: ["GET", "POST"],
+  },
 });
+
 
 //Store online users
 export const userSocketMap = {};
