@@ -39,8 +39,6 @@ app.use(
   })
 );
 
-// IMPORTANT for preflight
-app.options("*", cors());
 
 // Socket.io setup
 export const io = new Server(server, {
