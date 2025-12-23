@@ -27,8 +27,10 @@ export const userSocketMap = {};
 
 //Middleware setup
 app.use(express.json({ limit: "4mb" }));
-const allowedOrigins = [
-  "https://mern-chat-1-vxzp.onrender.com"
+const allowedOrigin = [
+  "http://localhost:5173",
+  "http://localhost:5000",
+  "https://mern-chat-1-vxzp.onrender.com",
 ];
 
 app.use(
